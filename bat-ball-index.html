@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAT BALL GAME</title>
+</head>
+<body>
+    <div>
+        <h1>BAT BALL STUMP GAME</h1>
+        <button onclick=" 
+            let computerChoise = getComputerAns();
+            console.log(computerChoise)
+            let resultMsg = finalAns('bat', computerChoise);
+            console.log(resultMsg)
+            returnAns('bat' , computerChoise , resultMsg);
+         ">Bat</button>
+
+        <button onclick=" 
+            computerChoise = getComputerAns();
+            resultMsg = finalAns('ball', computerChoise);
+            returnAns('ball' , computerChoise , resultMsg);
+        ">Ball</button>
+        
+         <button onclick="
+            computerChoise = getComputerAns();
+            resultMsg = finalAns('stump', computerChoise);
+            returnAns('stump' , computerChoise , resultMsg);
+        ">Stump</button>
+    </div>
+    <script>
+
+        let score = {
+            win : 0,
+            lost : 0,
+            tie : 0,
+        };
+
+        function getComputerAns(){    
+        let rendomNumber1 = Math.random() * 3;
+        if(rendomNumber1 > 0 && rendomNumber1 <=1){
+            return 'bat';
+        }else if(rendomNumber1 >1 && rendomNumber1 <=2){
+            return 'ball';
+        }else {
+            return 'stump';
+        }
+        }
+
+
+        function finalAns( userChoise , computerChoise){
+            if(userChoise === 'bat'){
+                if(computerChoise === 'bat'){
+                    score.tie++
+                    return "It's tie ";
+                }else if(computerChoise === 'ball'){
+                    score.win++
+                    return "user wom";
+                }else{
+                    score.lost++
+                    return "computer won";
+                }
+            }
+            else if(userChoise === 'ball'){
+                    if(computerChoise === 'bat'){
+                        score.lost++
+                        return "computer won";
+                    }else if(computerChoise === 'ball'){
+                       score.tie++
+                        return "It's tie";
+                    }else{
+                        score.win++
+                        return "user won;"
+                    }
+            }
+            else if(userChoise === 'stump') {
+                if(computerChoise === 'bat'){
+                    score.win++
+                    return "user won";
+                }else if(computerChoise === 'ball'){
+                    score.lost++
+                    return "computer won";
+                }else{
+                    score.tie++
+                    return " It's tie ";
+                }
+           }
+        }
+
+        function returnAns( userChoise, computerChoise, result){
+            alert(`you choise is ${userChoise}. computer choise is ${computerChoise} and final result is ${result}
+            score : win ${score.win} lost ${score.lost} tie ${score.tie}`);
+        }
+    </script>
+</body>
+</html>
